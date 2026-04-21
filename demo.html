@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedNet AI - Live Demo</title>
+  <style>
+    body{font-family:system-ui,sans-serif;padding:2rem;max-width:900px;margin:0 auto;background:#f8fafc}
+    .card{background:#fff;padding:1.5rem;border-radius:8px;margin:1rem 0;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+    h1{color:#0c4a6e;margin-top:0}
+    button{padding:.75rem 1.5rem;background:#0ea5e9;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:1rem}
+    button:hover{background:#0284c7}
+    #result{display:none}
+    .success{color:#16a34a}.warning{color:#f59e0b}.danger{color:#dc2626}
+    .back-link{display:inline-block;margin-bottom:1rem;color:#0ea5e9;text-decoration:none}
+    .back-link:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <a href="/" class="back-link">← Back to MedNet AI Home</a>
+  <h1>🫀 MedNet AI Cardiac Assessment - Live Demo</h1>
+  
+  <div class="card">
+    <h2>Test Sample Case</h2>
+    <p><strong>Patient:</strong> 52-year-old male</p>
+    <p><strong>Symptoms:</strong> Chest pressure, radiates to left arm, sweating</p>
+    <p><strong>Risk Factors:</strong> Smoking, hypertension</p>
+    <p><strong>Troponin:</strong> 0.08 ng/mL</p>
+    <button onclick="runAssessment()">🔍 Run AI Assessment</button>
+  </div>
+  <div id="result" class="card"><h2>AI Analysis Results</h2><div id="output"></div></div>
+  
+  <div class="card">
+    <h2>About This Demo</h2>
+    <p>This is a live demonstration of MedNet AI's HEART Score calculator. It uses evidence-based algorithms from the 2023 AHA Chest Pain Guidelines.</p>
+    <p><strong>Note:</strong> This is a clinical decision support tool only. Always use clinician judgment.</p>
+  </div>
+
+  <script>
+    async function runAssessment() {
+      const result = document.getElementById('result');
+      const output = document.getElementById('output');
+      result.style.display = 'block';
+      output.innerHTML = '<p>🔄 Analyzing symptoms...</p>';
+      
+      const API_URL = 'https://mednet-mvp-12764459316.us-central1.run.app/api/v1/assess';
+      
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            age: 52,
+            symptoms: ['chest pressure', 'radiates to left arm', 'sweating'],
+            risk_factors: ['smoking', 'hypertension'],
+            troponin_ng_ml: 0.08
+          })
+        });
+        const data = await response.json();
+        if (data.assessment) {
+          const riskColor = data.assessment.risk_level === 'HIGH' ? 'danger' : 
+                           data.assessment.risk_level === 'MODERATE' ? 'warning' : 'success';
+          output.innerHTML = `<div class="${riskColor}" style="font-size:1.2em;font-weight:bold;margin-bottom:1rem">❤️ HEART Score: ${data.assessment.heart_score}/10<br>⚠️ Risk Level: ${data.assessment.risk_level}<br>📋 Recommended: ${data.assessment.recommended_disposition}</div><strong>Actions:</strong><ul>${data.recommendations.map(r => `<li>${r}</li>`).join('')}</ul><p style="font-size:.8em;color:#64748b;margin-top:1rem">${data.disclaimer}</p>`;
+        } else {
+          output.innerHTML = `<p class="danger">❌ Error: ${data.error || 'Unknown'}</p>`;
+        }
+      } catch (error) {
+        output.innerHTML = `<p class="danger">🔌 Connection error: ${error.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
