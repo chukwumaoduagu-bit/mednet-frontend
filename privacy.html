@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | MedNet AI</title>
+  <style>
+    :root { --primary: #2563eb; --text: #1e293b; --bg: #f8fafc; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+    header { background: white; border-bottom: 1px solid #e2e8f0; padding: 1rem 0; }
+    nav { display: flex; gap: 1.5rem; align-items: center; }
+    nav a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: var(--text); margin-right: auto; }
+    .content { background: white; padding: 2rem; border-radius: 0.5rem; margin: 2rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    h1 { font-size: 1.75rem; margin-bottom: 1rem; }
+    h2 { font-size: 1.25rem; margin: 1.5rem 0 0.75rem; }
+    p { margin-bottom: 1rem; }
+    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    .highlight { background: #eff6ff; border-left: 4px solid var(--primary); padding: 1rem; border-radius: 0.25rem; margin: 1rem 0; }
+    footer { background: white; border-top: 1px solid #e2e8f0; padding: 2rem 0; margin-top: 3rem; text-align: center; font-size: 0.875rem; color: #64748b; }
+    footer a { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">🫀 MedNet AI</a>
+        <a href="/">Demo</a>
+        <a href="/about">About</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/features">Features</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h1>Privacy Policy</h1>
+      <p><strong>Last updated:</strong> July 1, 2026</p>
+      
+      <h2>🔒 Our Core Promise</h2>
+      <p><strong>MedNet Diagnostics AI never stores, shares, or sells patient data.</strong> All inputs are processed in real-time and discarded immediately after generating the HEART Score assessment.</p>
+      
+      <h2>What We Do NOT Collect</h2>
+      <ul>
+        <li>❌ No patient names, MRNs, or identifiers</li>
+        <li>❌ No protected health information (PHI) retention</li>
+        <li>❌ No tracking pixels, analytics cookies, or third-party scripts</li>
+        <li>❌ No data sold to advertisers, researchers, or third parties</li>
+      </ul>
+      
+      <h2>What We DO Process (Temporarily)</h2>
+      <p>When you use the MedNet AI demo, we temporarily process the following to generate your assessment:</p>
+      <ul>
+        <li>✅ Symptoms entered (e.g., "chest pressure", "sweating")</li>
+        <li>✅ Risk factors selected (e.g., "smoking", "hypertension")</li>
+        <li>✅ Troponin value and ECG findings</li>
+        <li>✅ Age and demographic context (for guideline alignment)</li>
+      </ul>
+      <p class="highlight">⚠️ This data exists only in memory during the API call (<1 second) and is never written to disk, logged, or transmitted beyond the secure Cloud Run endpoint.</p>
+      
+      <h2>HIPAA-Aware Architecture</h2>
+      <p>While MedNet AI is not a covered entity under HIPAA (we don't handle PHI), we design our system to exceed HIPAA standards:</p>
+      <ul>
+        <li>🔐 Encryption in transit (TLS 1.3) and at rest (AES-256)</li>
+        <li>🔐 Zero data retention policy enforced at infrastructure level</li>
+        <li>🔐 Audit logs for system access (no patient data)</li>
+        <li>🔐 Regular security assessments and penetration testing</li>
+      </ul>
+      
+      <h2>Enterprise & On-Premise Options</h2>
+      <p>For hospital systems requiring maximum control:</p>
+      <ul>
+        <li>🏥 Deploy MedNet AI behind your firewall</li>
+        <li>🏥 Integrate with your existing identity provider (SSO)</li>
+        <li>🏥 Full audit trail and compliance reporting</li>
+        <li>🏥 Dedicated instance with no shared infrastructure</li>
+      </ul>
+      
+      <h2>Contact Us</h2>
+      <p>Questions about privacy, security, or compliance? We're happy to help:</p>
+      <p>
+        <strong>Chukwuma Oduagu</strong><br>
+        Founder, MedNet Diagnostics AI<br>
+        📍 Sachse, TX<br>
+        📧 <a href="mailto:chukwuma.oduagu@gmail.com">chukwuma.oduagu@gmail.com</a><br>
+        📱 <a href="tel:4693867235">469-386-7235</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedNet Diagnostics AI</strong> | Clinical Decision Support for DFW Providers</p>
+      <p><a href="/">Demo</a> • <a href="/about">About</a> • <a href="/pricing">Pricing</a> • <a href="/contact">Contact</a> • © 2026 MedNet Diagnostics AI</p>
+    </div>
+  </footer>
+</body>
+</html>
